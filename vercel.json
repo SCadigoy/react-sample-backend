@@ -1,11 +1,11 @@
 {
     "version": 2,
     "builds": [
-        { "src": "app.js", "use": "@vercel/node" }
+        { "src": "data/posts.js", "use": "@vercel/node" }
     ],
     "routes": [
-        { "src": "/api/posts", "dest": "app.js" },
-        { "src": "/api/posts", "methods": ["POST"], "dest": "app.js" },
+        { "src": "/api/posts", "dest": "/data/posts.js" },
+        { "src": "/api/posts", "methods": ["POST"], "dest": "/data/posts.js" },
         { "src": "/(.*)", "dest": "/" }
     ]
 }
