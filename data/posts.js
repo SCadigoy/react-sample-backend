@@ -1,5 +1,4 @@
 const fs = require('node:fs/promises');
-const http = require('http');
 
 async function getStoredPosts() {
     const rawFileContent = await fs.readFile('posts.json', {
@@ -14,7 +13,7 @@ function storePosts(posts) {
     return fs.writeFile('posts.json', JSON.stringify({ posts: posts || [] }));
 }
 
-const server = http.createServer(async (req, res) => {
+module.exports = async (req, res) => {
     if (req.method === 'GET' && req.url === '/api/posts') {
         const posts = await getStoredPosts();
         res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -36,10 +35,4 @@ const server = http.createServer(async (req, res) => {
         res.writeHead(404, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: 'Not Found' }));
     }
-});
-
-server.listen(3000, () => {
-    console.log('Server is listening on port 3000');
-});
-
-module.exports = server;
+};
