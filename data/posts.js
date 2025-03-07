@@ -42,5 +42,4 @@ server.listen(3000, () => {
     console.log('Server is listening on port 3000');
 });
 
-exports.getStoredPosts = getStoredPosts;
-exports.storePosts = storePosts;
+module.exports = server;
